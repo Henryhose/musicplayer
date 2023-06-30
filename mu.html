@@ -1,0 +1,170 @@
+<html>
+  <head>
+    <script src="https://kit.fontawesome.com/1db75a16db.js" crossorigin="anonymous"></script>
+    <style>
+      h1,h3,h5,h6
+      {
+        color: white;
+      }
+      body
+      {
+        text-align: center;
+      }
+      img
+      {
+        border-radius: 50%;
+        width: 300px;
+      }
+      input
+      {
+        width: 400px;
+      }
+      .player
+      {
+        width: 1670px;
+        height: auto;
+        border: 10px solid black;
+        background-color: black;
+        padding: 100px;
+      }
+      .music-window
+      {
+        padding: 80px;
+        text-align: center;
+        width: 500px;
+        height: auto;
+        border: 10px solid peachpuff;
+        margin: auto;
+        position: relative;
+        background-color: black;
+
+      }
+      button
+      {
+        border-radius: 50%;
+        background-color: violet;
+        height: 50px;
+        width: 50px;
+      }
+      .back
+      {
+        float: left;
+        background-color: white;
+        border-radius: 50%;
+      }
+      .forward
+      {
+        float: right;
+        border-radius: 50%;
+        background-color: white;
+      }
+      .playpause 
+      {
+        border-radius: 50%;
+        background-color: white;
+        
+
+      }
+      #progress
+      {
+        -webkit-appearance: none;
+        width: 400px;
+        height: 6px;
+        cursor: pointer;
+        margin: 40px;
+        background-color: purple;
+        border-radius: 50%;
+      }
+      .controls
+      {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .controls div
+      {
+        width: 60px;
+        height: 60px;
+        margin: 20px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        cursor: pointer;
+        background-color: black;
+        color: white;
+        box-shadow:0 20px 20px purple
+      }
+      .details
+      {
+        border: 8px solid peachpuff;
+        width: auto;
+        height: auto;
+        font-style: georgia;
+        background-color: ;
+      }
+    </style>
+  </head>
+  <body>
+  
+    <div class="player">
+    <div class="music-window">
+     <b><u><h1>MUSIC PLAYER</h1></u></b> 
+     <div class="details">
+       <h3>NAAN NAAN</h3>
+      <h6>movie "MAHAAN"</h6>
+      <h5>Santosh Narayan</h5>
+     </div>
+      <img src="https://github.com/Henryhose/musicplayer/blob/main/Screenshot%202023-06-29%20101611.png?raw=true" alt="not avaiable">
+      <audio id="song">
+        <source src="https://pagalworldl.com/files/download/type/320/id/18681">
+      </audio>
+      <div><input type="range" id="progress" value="0"></div>
+      <div class="controls">
+      
+      <div><i class="fa-solid fa-backward"></i></div>
+      <div onclick="playpause()"><i class="fa-solid fa-play" id="ctrlBtn"></i></div>
+      <div><i class="fa-solid fa-forward"></i></div>
+    </div>
+    </div>
+  </div>
+  </body>
+  <script>
+    let song = document.getElementById("song");
+    let progresss = document.getElementById("progress");
+    let ctrlBtn = document.getElementById("ctrlBtn");
+
+    song.onloadedmetadata = function(){
+      progress.max = song.duration;
+      progress.value = song.currentTime;
+    }
+   function playpause()
+   {
+    if(ctrlBtn.classList.contains("fa-pause")){
+    song.pause();
+    ctrlBtn.classList.remove("fa-pause");
+    ctrlBtn.classList.add("fa-play");
+    }
+    else
+    {
+      song.play();
+      ctrlBtn.classList.add("fa-pause");
+    ctrlBtn.classList.remove("fa-play");
+    }
+  }
+
+  if(song.play()){
+    setInterval(()=>{
+      progresss.value = song.currentTime;
+    },500);
+  }
+
+  progress.onchange = function(){
+    song.play();
+    song.currentTime = progress.value;
+    ctrlBtn.classList.add("fa-pause");
+    ctrlBtn.classList.remove("fa-play");
+  }
+  </script>
+</html>
+ 
